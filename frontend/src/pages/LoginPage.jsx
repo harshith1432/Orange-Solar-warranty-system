@@ -154,26 +154,6 @@ export default function LoginPage() {
             </button>
           </form>
 
-          {/* Quick Demo Credentials Help */}
-          <div className="mt-5 p-3 bg-orange-50/60 border border-orange-200/60 rounded-xl text-[11px] text-slate-600">
-            <div className="flex items-center justify-between">
-              <div>
-                <span className="font-bold text-slate-800 block">Default Admin Login:</span>
-                <span className="font-mono text-slate-600">admin@gmail.com • Admin@123</span>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setEmail('admin@gmail.com');
-                  setPassword('Admin@123');
-                }}
-                className="px-2.5 py-1 bg-white hover:bg-orange-100 text-orange-700 border border-orange-200 font-bold text-[10px] rounded-lg shadow-2xs transition-all"
-              >
-                Auto-Fill
-              </button>
-            </div>
-          </div>
-
           {/* Registration link */}
           <div className="mt-6 pt-4 border-t border-slate-100 text-center">
             <p className="text-xs text-slate-500 font-normal">

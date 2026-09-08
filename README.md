@@ -30,7 +30,6 @@ This platform eliminates paper-based warranty slips and unauthorized warranty cl
 9. [Default System Credentials](#-default-system-credentials)
 10. [REST API Endpoints Reference](#-rest-api-endpoints-reference)
 11. [Technical Documentation](#-technical-documentation)
-12. [License & Attribution](#-license--attribution)
 
 ---
 
@@ -419,10 +418,3 @@ For deeper architectural insights and implementation specifics, refer to our ded
 - 🏗️ **[System Architecture & Design (docs/ARCHITECTURE.md)](docs/ARCHITECTURE.md)**
 - 📖 **[Comprehensive REST API Specification (docs/API_DOCUMENTATION.md)](docs/API_DOCUMENTATION.md)**
 - 🗃️ **[Relational Database Schema & ERD (docs/DATABASE_SCHEMA.md)](docs/DATABASE_SCHEMA.md)**
-
----
-
-## 📄 License & Attribution
-
-Developed for **Sun Zone Solar System India Pvt. Ltd. (Orange Solar)**.  
-ISO 9001:2015 Certified Solar Equipment Manufacturer • Bangalore, Karnataka, India.
