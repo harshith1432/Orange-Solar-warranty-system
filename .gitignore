@@ -1,0 +1,75 @@
+# ==============================================================================
+# Git Ignore Configuration for Orange Solar E-Warranty System
+# ==============================================================================
+
+# Node.js & Dependencies
+node_modules/
+frontend/node_modules/
+/.pnp
+.pnp.js
+
+# Production Build Outputs
+dist/
+frontend/dist/
+build/
+.next/
+out/
+
+# Java & Maven Build Outputs
+target/
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.rar
+*.zip
+*.tar.gz
+*.log
+.mvn/
+maven/
+
+# Uploaded Media & Runtime Files
+uploads/
+backend/uploads/
+*.tmp
+*.bak
+
+# Environment & Sensitive Credentials
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# Logs & Debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# IDE & Editor Configurations
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.settings/
+
+# OS Specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
