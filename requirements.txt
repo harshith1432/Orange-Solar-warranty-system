@@ -1,0 +1,63 @@
+﻿# ==============================================================================
+# Orange Solar E-Warranty Generation & Verification System
+# System & Dependency Requirements Specification
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CORE RUNTIME ENVIRONMENTS & SYSTEM PREREQUISITES
+# ------------------------------------------------------------------------------
+Java >= 17.0.0                  # OpenJDK 17 LTS (Required for Spring Boot 3.3.4)
+Node.js >= 18.18.0              # JavaScript Runtime for Frontend
+npm >= 9.0.0                    # Node Package Manager
+PostgreSQL >= 14.0              # Relational Database Management System (Default port: 5432)
+Apache Maven >= 3.8.0           # Java Build & Dependency Automation Tool (or bundled 3.9.6)
+Docker >= 24.0.0                # (Optional) Container runtime for Docker Compose deployment
+Docker Compose >= 2.20.0        # (Optional) Multi-container orchestration
+
+# ------------------------------------------------------------------------------
+# 2. BACKEND DEPENDENCIES (Java / Spring Boot 3.3.4)
+# Referenced from backend/pom.xml
+# ------------------------------------------------------------------------------
+org.springframework.boot:spring-boot-starter-web == 3.3.4
+org.springframework.boot:spring-boot-starter-data-jpa == 3.3.4
+org.springframework.boot:spring-boot-starter-validation == 3.3.4
+org.postgresql:postgresql == 42.7.4
+com.google.zxing:core == 3.5.3
+com.google.zxing:javase == 3.5.3
+io.jsonwebtoken:jjwt-api == 0.12.6
+io.jsonwebtoken:jjwt-impl == 0.12.6
+io.jsonwebtoken:jjwt-jackson == 0.12.6
+org.springframework.boot:spring-boot-starter-test == 3.3.4
+
+# ------------------------------------------------------------------------------
+# 3. FRONTEND RUNTIME DEPENDENCIES (React 18 + Vite)
+# Referenced from frontend/package.json
+# ------------------------------------------------------------------------------
+react == 18.3.1
+react-dom == 18.3.1
+react-router-dom == 6.26.2
+axios == 1.7.7
+clsx == 2.1.1
+tailwind-merge == 2.5.2
+lucide-react == 0.441.0
+html5-qrcode == 2.3.8
+qrcode == 1.5.4
+jspdf == 2.5.2
+html2canvas == 1.4.1
+
+# ------------------------------------------------------------------------------
+# 4. FRONTEND BUILD & DEV DEPENDENCIES
+# ------------------------------------------------------------------------------
+vite == 5.4.6
+@vitejs/plugin-react == 4.3.1
+tailwindcss == 3.4.11
+postcss == 8.4.47
+autoprefixer == 10.4.20
+
+# ------------------------------------------------------------------------------
+# 5. DATABASE REQUIREMENTS
+# ------------------------------------------------------------------------------
+Database Name: orange
+Database Engine: PostgreSQL
+Default Port: 5432
+Extensions / Capabilities: UTF-8 Encoding, UUID generation, Standard JDBC connectivity
