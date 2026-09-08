@@ -16,20 +16,21 @@ This platform eliminates paper-based warranty slips and unauthorized warranty cl
 
 ## 📑 Table of Contents
 1. [Executive Overview](#-executive-overview)
-2. [Key Capabilities & Features](#-key-capabilities--features)
-3. [System Architecture & Data Flow](#-system-architecture--data-flow)
-4. [Technology Stack](#-technology-stack)
-5. [Project Directory Structure](#-project-directory-structure)
-6. [Database Schema & ERD](#-database-schema--erd)
-7. [Security & Authentication Architecture](#-security--authentication-architecture)
-8. [Getting Started & Local Setup](#-getting-started--local-setup)
+2. [Quick Start: How to Run the Software](#-quick-start-how-to-run-the-software)
+3. [Key Capabilities & Features](#-key-capabilities--features)
+4. [System Architecture & Data Flow](#-system-architecture--data-flow)
+5. [Technology Stack](#-technology-stack)
+6. [Project Directory Structure](#-project-directory-structure)
+7. [Database Schema & ERD](#-database-schema--erd)
+8. [Security & Authentication Architecture](#-security--authentication-architecture)
+9. [Getting Started & Detailed Setup](#-getting-started--detailed-setup)
    - [Prerequisites](#prerequisites)
-   - [Quick Launch with Batch Script](#option-a-one-click-launch-windows)
-   - [Manual Setup (Step-by-Step)](#option-b-manual-step-by-step-setup)
-   - [Docker Compose Deployment](#option-c-docker-compose-production)
-9. [Default System Credentials](#-default-system-credentials)
-10. [REST API Endpoints Reference](#-rest-api-endpoints-reference)
-11. [Technical Documentation](#-technical-documentation)
+   - [Option 1: Windows 1-Click Batch Script](#method-1-one-click-launch-windows-easiest)
+   - [Option 2: Step-by-Step Manual Run](#method-2-step-by-step-manual-run)
+   - [Option 3: Docker Compose Deployment](#method-3-docker-compose-production)
+10. [Default System Credentials](#-default-system-credentials)
+11. [REST API Endpoints Reference](#-rest-api-endpoints-reference)
+12. [Technical Documentation](#-technical-documentation)
 
 ---
 
@@ -46,6 +47,96 @@ Solar water heaters, rooftop solar plants, and thermal heat pumps are long-term 
 - **Mobile-First Responsiveness**: Complete thumb-friendly navigation with an elevated mobile bottom navigation bar and mobile drawer for all customer and admin screens.
 - **Public Trust & Verification**: Anyone (dealers, technicians, customers) can scan the QR code on a solar water heater and instantly verify official manufacturer coverage on [`/verify/{certificateNo}`](http://localhost:5173/verify/EW-2024-8841).
 - **Customer 360 & CRM Ledger**: Administrators have complete visibility into every customer's personal details, installed rooftop systems, active warranties, and proof documents in an inline accordion ledger.
+
+---
+
+## ⚡ Quick Start: How to Run the Software
+
+Here is the quickest way to get the entire application up and running on your machine:
+
+### 1️⃣ Requirements Checklist
+Before running the software, ensure you have:
+* **Java 17+** installed (`java -version`)
+* **Node.js 18+** & **npm** installed (`node -v`, `npm -v`)
+* **PostgreSQL** running locally on port `5432` with a database named `orange`:
+  ```sql
+  CREATE DATABASE orange;
+  ```
+
+---
+
+### 2️⃣ Running the Application
+
+Choose whichever method fits your environment:
+
+#### Method 1: One-Click Launch (Windows — Easiest) 🚀
+If you are on Windows, simply double-click **`run.bat`** located in the root directory:
+```bash
+.\run.bat
+```
+> This automatically opens two terminal windows:
+> 1. Starts the **Spring Boot Backend** on `http://localhost:8085`
+> 2. Starts the **Vite React Frontend** on `http://localhost:5173`
+
+---
+
+#### Method 2: Step-by-Step Manual Run (Windows / macOS / Linux) 💻
+
+**Terminal 1: Start Backend (Spring Boot)**
+```bash
+# 1. Navigate to backend directory
+cd backend
+
+# 2. Run the Spring Boot application (using local maven or wrapper)
+mvn clean spring-boot:run
+
+# (On Windows using the bundled Maven)
+..\maven\apache-maven-3.9.6\bin\mvn.cmd spring-boot:run
+```
+> The backend will start on **`http://localhost:8085`** and automatically initialize tables and seed default accounts.
+
+**Terminal 2: Start Frontend (React + Vite)**
+```bash
+# 1. Navigate to frontend directory
+cd frontend
+
+# 2. Install dependencies (only needed the first time)
+npm install
+
+# 3. Start development server
+npm run dev
+```
+> The frontend will start on **`http://localhost:5173`**.
+
+---
+
+#### Method 3: Docker Compose (Production / Containerized) 🐳
+To run the complete system (PostgreSQL DB + Backend API + Frontend) without installing Java or Node:
+```bash
+docker-compose up --build -d
+```
+To stop the services:
+```bash
+docker-compose down
+```
+
+---
+
+### 3️⃣ Access the Application in Your Browser
+
+Once both services are running, open your web browser:
+
+| Portal | URL | Description |
+|---|---|---|
+| 🌐 **Public Website & Home** | [http://localhost:5173](http://localhost:5173) | Landing page & features |
+| 🔐 **Sign In Page** | [http://localhost:5173/login](http://localhost:5173/login) | Unified login for Admins & Customers |
+| 📝 **Customer Registration** | [http://localhost:5173/register](http://localhost:5173/register) | Create a new customer account |
+| 🔍 **Public QR Verification** | [http://localhost:5173/verify/EW-2024-8841](http://localhost:5173/verify/EW-2024-8841) | Sample certificate verification |
+| ⚙️ **Backend REST API** | [http://localhost:8085/api](http://localhost:8085/api) | Health & API endpoints |
+
+#### 🔑 Log in with Default Test Accounts:
+- **Admin**: `admin@gmail.com` / `Admin@123`
+- **Customer**: `rahul@gmail.com` / `Rahul@123`
 
 ---
 
