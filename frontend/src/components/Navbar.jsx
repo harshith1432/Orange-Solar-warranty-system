@@ -101,7 +101,7 @@ export default function Navbar() {
               {/* Get Started Button */}
               <Link
                 to="/register"
-                className="text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md shadow-orange-500/20 hover:shadow-orange-500/30 flex items-center gap-1 sm:gap-1.5 transition-all whitespace-nowrap"
+                className="text-xs font-bold btn-supreme px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl shadow-md shadow-blue-500/20 hover:shadow-blue-500/30 flex items-center gap-1 sm:gap-1.5 transition-all whitespace-nowrap"
               >
                 <span>Register</span>
                 <ArrowRight className="w-3.5 h-3.5 hidden sm:inline" />
