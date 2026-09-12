@@ -140,81 +140,71 @@ export default function HomePage() {
     <div className="min-h-screen flex flex-col bg-[#fcfdfd] text-slate-800 relative overflow-hidden font-sans selection:bg-orange-500 selection:text-white">
       <Navbar />
 
-      {/* Radiant Background Ambient Gradients */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[550px] bg-gradient-to-b from-amber-100/40 via-orange-100/25 to-transparent rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-bl from-orange-200/20 via-amber-100/15 to-transparent rounded-full blur-3xl pointer-events-none -z-0" />
-      <div className="absolute top-[70%] left-[-10%] w-[500px] h-[500px] bg-gradient-to-tr from-sky-100/30 to-transparent rounded-full blur-3xl pointer-events-none -z-0" />
+      {/* 1. HERO SECTION WITH ORANGE SOLAR HEATERS IN BACKGROUND & SUN GLOW */}
+      <section className="hero-section relative min-h-[620px] sm:min-h-[680px] flex items-center justify-center overflow-hidden">
+        {/* Background Image featuring Orange Solar Heaters on left, right, and top */}
+        <div className="hero-bg" />
 
-      {/* Decorative Grid Pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none -z-0 opacity-30"
-        style={{
-          backgroundImage: 'radial-gradient(#cbd5e1 1.2px, transparent 1.2px)',
-          backgroundSize: '28px 28px',
-          maskImage: 'linear-gradient(to bottom, black 40%, transparent 95%)'
-        }}
-      />
+        {/* Pulsing Golden Sun Glow */}
+        <div className="sun-glow" />
 
-      {/* HERO SECTION */}
-      <div className="flex-1 max-w-6xl mx-auto px-4 pt-10 pb-16 sm:pt-14 sm:pb-20 flex flex-col items-center justify-center text-center relative z-10">
-        
-        {/* Official Company Badge */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white border border-orange-200 shadow-xs text-orange-900 text-[11px] sm:text-xs font-semibold mb-6 max-w-full">
-          <span className="flex h-2 w-2 relative shrink-0">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-          </span>
-          <span className="truncate max-w-[220px] sm:max-w-none">Sun Zone Solar System India Pvt. Ltd.</span>
-          <span className="text-orange-300">|</span>
-          <span className="text-orange-700 font-bold whitespace-nowrap shrink-0">Official E-Warranty Platform</span>
-        </div>
-
-        {/* Official Brand Logo */}
-        <div className="mb-6 flex flex-col items-center">
-          <OrangeSolarLogo className="h-16 sm:h-20 md:h-24 w-auto drop-shadow-sm" />
-          <div className="mt-2 text-xs sm:text-sm font-black tracking-widest text-orange-600 uppercase">
-            Powering Infinity
+        {/* Central Glassmorphic Card (matching reference screenshot media_1789228435697.png) */}
+        <div className="relative z-10 glass-card-hero mx-auto max-w-2xl px-6 py-10 sm:p-12 text-center my-12 w-[92%] sm:w-full">
+          {/* Trust Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white border border-white/20">
+              ISO 9001 & 14001 Certified
+            </span>
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white border border-white/20">
+              16+ Years of Excellence
+            </span>
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white border border-white/20">
+              4500+ Happy Dealers
+            </span>
           </div>
-          <div className="text-[11px] sm:text-xs font-medium text-slate-500 italic mt-0.5">
-            Transforming solar energy towards a sustainable future...
+
+          {/* Hero Title */}
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight mb-4">
+            Warm Water, <br />
+            <span className="text-[#facc15] drop-shadow-sm">Powered by the Sun</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-xs sm:text-sm text-slate-200 max-w-lg mx-auto mb-8 font-normal leading-relaxed">
+            Register your Orange Solar Water Heater warranty in under 2 minutes. Enjoy peace of mind with India's most trusted solar brand.
+          </p>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <Link
+              to={loggedIn ? "/customer/apply" : "/login?tab=register"}
+              className="btn-supreme px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95 w-full sm:w-auto text-white cursor-pointer"
+            >
+              <span>Register Your Product Now</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to={loggedIn ? (isAdministrator ? "/admin/dashboard" : "/customer/dashboard") : "/login?tab=signin"}
+              className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md transition-all active:scale-95 w-full sm:w-auto cursor-pointer"
+            >
+              {loggedIn ? "Go to Dashboard" : "Admin Login"}
+            </Link>
           </div>
         </div>
 
-        {/* Hero Headlines - Professional Corporate Hierarchy */}
-        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-2 sm:mb-3">
-          Digital E-Warranty Issuance & Verification
-        </h1>
-        
-        <p className="text-base sm:text-lg font-bold tracking-tight text-orange-600 mb-4">
-          Direct Manufacturer Assurance • Tamper-Proof QR Cards • Instant Mobile Claim
-        </p>
-
-        <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-8">
-          The centralized warranty registry for Orange Solar water heaters, high-efficiency domestic & industrial heat pumps, and solar rooftop systems manufactured by Sun Zone Solar System India Pvt. Ltd.
-        </p>
-
-        {/* Official Certifications Row from Brochure */}
-        <div className="w-full max-w-3xl mb-8">
-          <SunZoneCertifications />
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/75 text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold pointer-events-none">
+          <span>Scroll to explore</span>
+          <span className="text-xs sm:text-sm animate-bounce">↓</span>
         </div>
+      </section>
 
-        {/* Hero Primary Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12 w-full max-w-md">
-          <Link
-            to={loggedIn ? "/customer/apply" : "/login?tab=register"}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-bold text-white bg-[#007bff] hover:bg-[#0069d9] flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95 transition-all"
-          >
-            <span>Register Your Product Warranty</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            to="/verify"
-            className="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-300 transition-all active:scale-95 shadow-2xs"
-          >
-            Verify Certificate
-          </Link>
-        </div>
+      {/* Official Certifications Row from Brochure */}
+      <div className="w-full max-w-4xl mx-auto px-4 -mt-5 relative z-20 mb-8">
+        <SunZoneCertifications />
+      </div>
 
+      <main className="flex-1 max-w-6xl mx-auto px-4 py-6 flex flex-col items-center justify-center text-center relative z-10">
         {/* FEATURE HIGHLIGHTS GRID - Clean Corporate Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl text-left mb-14">
           
@@ -531,7 +521,7 @@ export default function HomePage() {
             <span className="text-[11px] text-slate-500 font-normal">Official Warranty Record</span>
           </div>
         </div>
-      </div>
+      </main>
 
       {/* FOOTER */}
       <footer className="py-10 bg-slate-900 text-slate-400 text-xs border-t border-slate-800">
