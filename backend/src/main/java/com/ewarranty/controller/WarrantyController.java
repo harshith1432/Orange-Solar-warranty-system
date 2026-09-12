@@ -21,6 +21,9 @@ public class WarrantyController {
     @Autowired
     private WarrantyService warrantyService;
 
+    @Autowired
+    private com.ewarranty.util.JwtUtil jwtUtil;
+
     @GetMapping
     public ResponseEntity<List<WarrantyRequest>> getAllRequests(@RequestParam(required = false) String status) {
         return ResponseEntity.ok(warrantyService.getAllRequests(status));
@@ -50,7 +53,19 @@ public class WarrantyController {
     public ResponseEntity<?> applyForWarranty(@RequestBody WarrantyApplicationDto dto) {
         try {
             WarrantyRequest created = warrantyService.applyForWarranty(dto);
-            return ResponseEntity.ok(created);
+            Map<String, Object> resp = new java.util.HashMap<>();
+            resp.put("success", true);
+            resp.put("id", created.getId());
+            resp.put("requestId", created.getRequestId());
+            resp.put("serialNumber", created.getSerialNumber());
+            resp.put("productName", created.getProductName());
+            resp.put("productModel", created.getProductModel());
+            resp.put("user", created.getUser());
+            if (created.getUser() != null) {
+                resp.put("token", jwtUtil.generateToken(created.getUser()));
+            }
+            resp.put("warranty", created);
+            return ResponseEntity.ok(resp);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
         }

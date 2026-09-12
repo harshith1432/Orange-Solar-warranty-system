@@ -80,8 +80,58 @@ public class WarrantyService {
 
     @Transactional
     public WarrantyRequest applyForWarranty(WarrantyApplicationDto dto) {
-        User user = userRepository.findById(dto.getUserId())
-            .orElseThrow(() -> new RuntimeException("User not found: " + dto.getUserId()));
+        User user = null;
+        if (dto.getUserId() != null) {
+            user = userRepository.findById(dto.getUserId()).orElse(null);
+        }
+
+        if (user == null && dto.getCustomerPhone() != null && !dto.getCustomerPhone().trim().isEmpty()) {
+            user = userRepository.findByPhone(dto.getCustomerPhone().trim()).orElse(null);
+        }
+
+        if (user == null && dto.getCustomerEmail() != null && !dto.getCustomerEmail().trim().isEmpty()) {
+            user = userRepository.findByEmail(dto.getCustomerEmail().trim().toLowerCase()).orElse(null);
+        }
+
+        if (user == null) {
+            String name = (dto.getCustomerName() != null && !dto.getCustomerName().trim().isEmpty())
+                ? dto.getCustomerName().trim()
+                : "Customer";
+            String phone = (dto.getCustomerPhone() != null && !dto.getCustomerPhone().trim().isEmpty())
+                ? dto.getCustomerPhone().trim()
+                : "9900000000";
+            String email = (dto.getCustomerEmail() != null && !dto.getCustomerEmail().trim().isEmpty())
+                ? dto.getCustomerEmail().trim().toLowerCase()
+                : ("cust_" + phone + "@orangesolar.com");
+            String password = "Orange@" + (phone.length() >= 4 ? phone.substring(phone.length() - 4) : "1234");
+            String fullAddress = (dto.getAddress() != null ? dto.getAddress().trim() : "")
+                + (dto.getCity() != null ? ", " + dto.getCity().trim() : "")
+                + (dto.getDistrict() != null ? ", " + dto.getDistrict().trim() : "")
+                + (dto.getState() != null ? ", " + dto.getState().trim() : "")
+                + (dto.getPincode() != null ? " - " + dto.getPincode().trim() : "");
+
+            user = new User();
+            user.setName(name);
+            user.setPhone(phone);
+            user.setEmail(email);
+            user.setPassword(password);
+            user.setRole("CUSTOMER");
+            user.setAddress(fullAddress.isEmpty() ? "Bangalore, Karnataka" : fullAddress);
+            user.setAge(30);
+            user.setTotalPurchases(1);
+            user.setTotalSpent(dto.getPurchasePrice() != null ? dto.getPurchasePrice() : java.math.BigDecimal.valueOf(25000));
+            user.setMemberSince(LocalDate.now().getDayOfMonth() + " " + LocalDate.now().getMonth().name().substring(0, 3) + " " + LocalDate.now().getYear());
+            user.setCreatedAt(LocalDateTime.now());
+            user = userRepository.save(user);
+        } else if (dto.getAddress() != null && !dto.getAddress().trim().isEmpty()) {
+            String fullAddress = dto.getAddress().trim()
+                + (dto.getCity() != null ? ", " + dto.getCity().trim() : "")
+                + (dto.getDistrict() != null ? ", " + dto.getDistrict().trim() : "")
+                + (dto.getState() != null ? ", " + dto.getState().trim() : "")
+                + (dto.getPincode() != null ? " - " + dto.getPincode().trim() : "");
+            user.setAddress(fullAddress);
+            userRepository.save(user);
+        }
 
         Product product = null;
         if (dto.getProductId() != null) {
@@ -96,16 +146,34 @@ public class WarrantyService {
         req.setRequestId(reqId);
         req.setUser(user);
         req.setProduct(product);
-        req.setProductName(dto.getProductName() != null ? dto.getProductName() : (product != null ? product.getName() : "General Product"));
+
+        String pName = dto.getProductName() != null ? dto.getProductName() : (dto.getProductModel() != null ? dto.getProductModel() : (product != null ? product.getName() : "Orange Solar Product"));
+        req.setProductName(pName);
         req.setProductModel(dto.getProductModel() != null ? dto.getProductModel() : (product != null ? product.getModel() : "Standard"));
-        req.setSerialNumber(dto.getSerialNumber());
+        req.setSerialNumber(dto.getSerialNumber() != null ? dto.getSerialNumber().trim().toUpperCase() : "OS-" + System.currentTimeMillis());
         req.setPurchaseDate(dto.getPurchaseDate() != null ? dto.getPurchaseDate() : LocalDate.now());
-        req.setStoreName(dto.getStoreName() != null ? dto.getStoreName() : (product != null ? product.getStoreName() : "Authorized Retail Store"));
-        req.setPurchasePrice(dto.getPurchasePrice() != null ? dto.getPurchasePrice() : (product != null ? product.getPrice() : null));
-        if (dto.getInvoiceUrl() == null || dto.getInvoiceUrl().trim().isEmpty()) {
-            throw new IllegalArgumentException("Purchase bill / invoice photo is mandatory. Please upload your bill photo.");
-        }
-        req.setInvoiceUrl(dto.getInvoiceUrl().trim());
+        req.setInstallationDate(dto.getInstallationDate() != null ? dto.getInstallationDate() : req.getPurchaseDate());
+        
+        String dealer = dto.getDealerName() != null && !dto.getDealerName().trim().isEmpty() 
+            ? dto.getDealerName().trim() 
+            : (dto.getStoreName() != null ? dto.getStoreName().trim() : "Authorized Orange Solar Dealer");
+        req.setStoreName(dealer);
+        req.setDealerPhone(dto.getDealerPhone());
+        req.setPurchasePrice(dto.getPurchasePrice() != null ? dto.getPurchasePrice() : (product != null ? product.getPrice() : java.math.BigDecimal.valueOf(25000)));
+
+        req.setCustomerAddress(dto.getAddress());
+        req.setPincode(dto.getPincode());
+        req.setCity(dto.getCity());
+        req.setDistrict(dto.getDistrict());
+        req.setState(dto.getState());
+        req.setTankCapacity(dto.getTankCapacity());
+        req.setModelType(dto.getModelType());
+        req.setInvoiceNumber(dto.getInvoiceNumber());
+
+        String invUrl = (dto.getInvoiceUrl() != null && !dto.getInvoiceUrl().trim().isEmpty()) 
+            ? dto.getInvoiceUrl().trim() 
+            : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800";
+        req.setInvoiceUrl(invUrl);
         req.setStatus("PENDING");
         req.setSubmissionDate(LocalDateTime.now());
 

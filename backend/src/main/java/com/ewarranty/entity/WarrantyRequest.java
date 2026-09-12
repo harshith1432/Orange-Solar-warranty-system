@@ -57,6 +57,36 @@ public class WarrantyRequest {
     @Column(name = "reviewed_at")
     private LocalDateTime reviewedAt;
 
+    @Column(name = "customer_address", columnDefinition = "TEXT")
+    private String customerAddress;
+
+    @Column(name = "pincode")
+    private String pincode;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "district")
+    private String district;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "tank_capacity")
+    private String tankCapacity;
+
+    @Column(name = "model_type")
+    private String modelType;
+
+    @Column(name = "installation_date")
+    private LocalDate installationDate;
+
+    @Column(name = "invoice_number")
+    private String invoiceNumber;
+
+    @Column(name = "dealer_phone")
+    private String dealerPhone;
+
     @OneToOne(mappedBy = "warrantyRequest", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private WarrantyCard warrantyCard;
 
@@ -110,4 +140,34 @@ public class WarrantyRequest {
 
     public WarrantyCard getWarrantyCard() { return warrantyCard; }
     public void setWarrantyCard(WarrantyCard warrantyCard) { this.warrantyCard = warrantyCard; }
+
+    public String getCustomerAddress() { return customerAddress; }
+    public void setCustomerAddress(String customerAddress) { this.customerAddress = customerAddress; }
+
+    public String getPincode() { return pincode; }
+    public void setPincode(String pincode) { this.pincode = pincode; }
+
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
+
+    public String getDistrict() { return district; }
+    public void setDistrict(String district) { this.district = district; }
+
+    public String getState() { return state; }
+    public void setState(String state) { this.state = state; }
+
+    public String getTankCapacity() { return tankCapacity; }
+    public void setTankCapacity(String tankCapacity) { this.tankCapacity = tankCapacity; }
+
+    public String getModelType() { return modelType; }
+    public void setModelType(String modelType) { this.modelType = modelType; }
+
+    public LocalDate getInstallationDate() { return installationDate; }
+    public void setInstallationDate(LocalDate installationDate) { this.installationDate = installationDate; }
+
+    public String getInvoiceNumber() { return invoiceNumber; }
+    public void setInvoiceNumber(String invoiceNumber) { this.invoiceNumber = invoiceNumber; }
+
+    public String getDealerPhone() { return dealerPhone; }
+    public void setDealerPhone(String dealerPhone) { this.dealerPhone = dealerPhone; }
 }

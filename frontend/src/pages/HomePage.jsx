@@ -194,15 +194,35 @@ export default function HomePage() {
         </p>
 
         {/* Official Certifications Row from Brochure */}
-        <div className="w-full max-w-3xl mb-10">
+        <div className="w-full max-w-3xl mb-8">
           <SunZoneCertifications />
+        </div>
+
+        {/* Hero Primary Actions */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-12 w-full max-w-md">
+          <Link
+            to={loggedIn ? "/customer/apply" : "/login?tab=register"}
+            className="w-full sm:w-auto px-8 py-3.5 rounded-full text-sm font-bold text-white bg-[#007bff] hover:bg-[#0069d9] flex items-center justify-center gap-2 shadow-lg shadow-blue-500/25 active:scale-95 transition-all"
+          >
+            <span>Register Your Product Warranty</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            to="/verify"
+            className="w-full sm:w-auto px-7 py-3.5 rounded-full text-sm font-semibold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-300 transition-all active:scale-95 shadow-2xs"
+          >
+            Verify Certificate
+          </Link>
         </div>
 
         {/* FEATURE HIGHLIGHTS GRID - Clean Corporate Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl text-left mb-14">
           
           {/* Card 1: Instant Registration */}
-          <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-orange-300 transition-all duration-200 group">
+          <Link
+            to={loggedIn ? "/customer/apply" : "/login?tab=register"}
+            className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-orange-300 transition-all duration-200 group block cursor-pointer"
+          >
             <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors">
               <FileCheck className="w-5 h-5" />
             </div>
@@ -215,13 +235,13 @@ export default function HomePage() {
               </span>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed mb-4">
-              Select your solar panel or inverter model, attach your invoice details, and submit a registered warranty claim in under 60 seconds.
+              Select your solar water heater or heat pump model, attach your invoice details, and submit a registered warranty in under 60 seconds.
             </p>
             <div className="flex items-center gap-1 text-xs font-semibold text-orange-600">
-              <span>Digital Submission</span>
+              <span>Register Online</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </div>
-          </div>
+          </Link>
 
           {/* Card 2: Milestone Timeline */}
           <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-2xs hover:shadow-md hover:border-amber-300 transition-all duration-200 group">
