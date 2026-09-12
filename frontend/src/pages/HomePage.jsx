@@ -156,26 +156,24 @@ export default function HomePage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fcfdfd] text-slate-800 relative overflow-hidden font-sans selection:bg-orange-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-800 relative font-sans selection:bg-orange-500 selection:text-white">
+      {/* 0. TRUE FIXED SOLAR BACKGROUND - Pinned to viewport, 0% scroll movement */}
+      <div className="fixed-solar-bg-container">
+        <div className="fixed-solar-bg-image" />
+        <div className="fixed-solar-bg-overlay" />
+        <div className="sun-glow" />
+      </div>
+
       <Navbar />
 
-      {/* 1. HERO SECTION WITH FIXED PARALLAX BACKGROUND & FLOATING/TILTING FRONT CARD */}
+      {/* 1. HERO SECTION - Transparent background, lets fixed solar image stay behind itself */}
       <section
-        className="hero-section relative min-h-[640px] sm:min-h-[720px] lg:min-h-[85vh] flex items-center justify-center overflow-hidden"
+        className="hero-section"
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={handleHeroMouseLeave}
       >
-        {/* Background Image staying fixed in place */}
-        <div className="hero-bg" />
-
-        {/* Subtle dark gradient overlay so text remains razor sharp */}
-        <div className="hero-overlay" />
-
-        {/* Ambient sun glow */}
-        <div className="sun-glow" />
-
         {/* Front Card Container with Idle Floating Animation */}
-        <div className="relative z-10 mx-auto max-w-2xl px-4 text-center my-8 w-[94%] sm:w-full hero-float-card">
+        <div className="relative z-10 mx-auto max-w-2xl px-4 text-center my-auto w-[94%] sm:w-full hero-float-card">
           {/* Interactive 3D Card that moves & tilts smoothly while background stays still */}
           <div
             className="glass-card-hero px-6 py-10 sm:p-12 text-center w-full will-change-transform"
@@ -228,18 +226,31 @@ export default function HomePage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-white/75 text-[10px] sm:text-[11px] uppercase tracking-widest font-semibold pointer-events-none">
+        <div className="mt-auto pb-4 flex flex-col items-center gap-1 text-white/80 text-[11px] uppercase tracking-widest font-semibold pointer-events-none">
           <span>Scroll to explore</span>
-          <span className="text-xs sm:text-sm animate-bounce">↓</span>
+          <span className="text-sm animate-bounce">↓</span>
         </div>
       </section>
 
-      {/* Official Certifications Row from Brochure */}
-      <div className="w-full max-w-4xl mx-auto px-4 -mt-5 relative z-20 mb-8">
-        <SunZoneCertifications />
-      </div>
+      {/* 2. THE WEBSITE CONTENT CONTAINER - Comes upside sliding over fixed background */}
+      <div className="relative z-20 bg-white rounded-t-[36px] sm:rounded-t-[48px] shadow-[0_-25px_60px_rgba(0,0,0,0.35)] border-t border-slate-100 overflow-hidden">
+        {/* Intro header inside the sliding card */}
+        <div className="w-full max-w-5xl mx-auto px-4 pt-12 pb-6 text-center">
+          <span className="text-xs uppercase font-bold tracking-widest text-orange-600 bg-orange-100/80 px-3.5 py-1 rounded-full">
+            Trusted Solar Energy Leader
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-3 tracking-tight">
+            Pioneering Solar Innovation Since 2008
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-500 mt-2 max-w-xl mx-auto">
+            Empowering thousands of Indian households and commercial enterprises with eco-friendly, zero-emission water heating solutions.
+          </p>
+          <div className="mt-6">
+            <SunZoneCertifications />
+          </div>
+        </div>
 
-      <main className="flex-1 max-w-6xl mx-auto px-4 py-6 flex flex-col items-center justify-center text-center relative z-10">
+        <main className="flex-1 max-w-6xl mx-auto px-4 py-6 flex flex-col items-center justify-center text-center relative z-10">
         {/* FEATURE HIGHLIGHTS GRID - Clean Corporate Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl text-left mb-14">
           
@@ -606,7 +617,8 @@ export default function HomePage() {
             <span>Tamper-proof Digital QR Certification Engine</span>
           </div>
         </div>
-      </footer>
+        </footer>
+      </div>
 
     </div>
   );
