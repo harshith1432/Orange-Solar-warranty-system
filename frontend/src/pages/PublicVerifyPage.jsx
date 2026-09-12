@@ -3,6 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import { warrantiesApi } from '../utils/api';
 import { CheckCircle2, XCircle, ShieldCheck, Calendar, ArrowRight, Sun, ExternalLink } from 'lucide-react';
+import OrangeSolarLogo from '../components/OrangeSolarLogo';
+import SolarWatermark from '../components/SolarWatermark';
+import SunZoneCertifications from '../components/SunZoneCertifications';
 
 export default function PublicVerifyPage() {
   const { certificateNo } = useParams();
@@ -32,26 +35,30 @@ export default function PublicVerifyPage() {
             <p className="text-xs text-slate-400 mt-1">Querying central warranty registry</p>
           </div>
         ) : card ? (
-          <div className="bg-white border-2 border-orange-500 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-            {/* Header Badge */}
-            <div className="flex items-center justify-between pb-5 border-b border-orange-100 mb-5">
+          <div className="bg-white border-4 border-orange-500 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+            {/* Subtle Brand Watermark */}
+            <SolarWatermark variant="logo" size={320} className="opacity-[0.045]" />
+
+            {/* Official Header */}
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-5 border-b border-orange-100 mb-5 relative z-10">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
-                  <Sun className="w-6 h-6" />
-                </div>
-                <div>
-                  <h1 className="text-base font-bold text-slate-900">
-                    ORANGE <span className="text-orange-600">SOLAR</span>
-                  </h1>
-                  <span className="text-xs text-emerald-700 font-bold flex items-center gap-1">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    Verified Official E-Warranty
-                  </span>
-                </div>
+                <OrangeSolarLogo className="h-10 sm:h-12 w-auto" showTagline={true} />
               </div>
-              <span className="text-xs font-mono font-bold bg-orange-50 text-orange-800 border border-orange-200 px-3 py-1 rounded-lg">
-                {card.certificateNo}
-              </span>
+              <div className="text-center sm:text-right">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Official Certificate ID</span>
+                <span className="text-xs font-mono font-black bg-orange-50 text-orange-900 border border-orange-200 px-3 py-1 rounded-lg inline-block shadow-2xs">
+                  {card.certificateNo}
+                </span>
+              </div>
+            </div>
+
+            {/* Official Verification Confirmed Banner */}
+            <div className="mb-5 p-3 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center gap-2.5 relative z-10">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div>
+                <div className="text-xs font-black uppercase tracking-wider">Official E-Warranty Verified</div>
+                <div className="text-[10px] text-emerald-700 font-medium">Genuine Sun Zone Solar System India Pvt. Ltd. product with valid manufacturer guarantee</div>
+              </div>
             </div>
 
             {/* Product Photo Thumbnail Preview */}
@@ -114,16 +121,26 @@ export default function PublicVerifyPage() {
               </div>
             </div>
 
+            {/* Certifications row */}
+            <div className="mb-5">
+              <SunZoneCertifications />
+            </div>
+
             <div className="text-center text-[11px] text-slate-500 mb-6 space-y-1">
-              <p className="font-medium text-slate-700">
-                Sun Zone Solar System India Pvt. Ltd. • ISO 9001:2015 Certified
+              <p className="font-bold text-slate-800">
+                SUN ZONE SOLAR SYSTEM INDIA PVT. LTD.
               </p>
-              <p>Helpline: +91 97400 97000 • Bangalore, Karnataka</p>
+              <p className="text-slate-600">
+                # Sy No. 60/3&4, Muneshwara Ind. Layout, Puradapalya, Bangalore-562130
+              </p>
+              <p className="text-orange-600 font-semibold">
+                Helpline: 9164659666 / +91 97400 97000 • www.orangesolar.co.in
+              </p>
             </div>
 
             <Link
               to="/"
-              className="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-xs font-semibold text-center block shadow-xs transition-all"
+              className="w-full py-3 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white rounded-xl text-xs font-bold text-center block shadow-md shadow-orange-500/20 transition-all"
             >
               Return to Orange Solar Portal
             </Link>

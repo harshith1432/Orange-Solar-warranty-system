@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import QRCode from 'qrcode';
-import { Download, Printer, CheckCircle2, ShieldCheck, ExternalLink, Calendar, Store, Tag } from 'lucide-react';
+import { Download, Printer, CheckCircle2, ShieldCheck, ExternalLink, Calendar, Store, Tag, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import OrangeSolarLogo from './OrangeSolarLogo';
+import SolarWatermark from './SolarWatermark';
 
 export default function WarrantyCardPreview({ card, showActions = true }) {
   const [qrCodeUrl, setQrCodeUrl] = useState('');
@@ -103,22 +105,25 @@ export default function WarrantyCardPreview({ card, showActions = true }) {
         ref={cardRef}
         className="bg-white border-8 border-double border-orange-500 rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden text-slate-800"
       >
-        {/* Subtle Background Watermark */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] pointer-events-none select-none">
-          <ShieldCheck className="w-[500px] h-[500px] text-orange-950" />
-        </div>
+        {/* Official Background Watermark with Orange Solar Logo */}
+        <SolarWatermark variant="logo" size={380} className="opacity-[0.045]" />
 
         {/* Certificate Header */}
-        <div className="text-center pb-6 border-b-2 border-orange-100 relative">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-800 text-xs font-black tracking-widest uppercase mb-2">
+        <div className="text-center pb-6 border-b-2 border-orange-100 relative z-10">
+          <div className="flex flex-col items-center justify-center mb-3">
+            <OrangeSolarLogo className="h-14 sm:h-16 w-auto" showTagline={true} />
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-900 text-xs font-black tracking-widest uppercase mb-2 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-orange-600" />
             Official Digital Warranty Certificate
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 uppercase">
-            ORANGE <span className="text-orange-500">SOLAR</span>
-          </h2>
-          <p className="text-xs font-semibold text-slate-600 mt-0.5">
-            Sun Zone Solar System India Pvt. Ltd. • Bangalore, Karnataka
+
+          <p className="text-xs font-bold text-slate-700 tracking-wide">
+            MANUFACTURED & MARKETED BY SUN ZONE SOLAR SYSTEM INDIA PVT. LTD.
+          </p>
+          <p className="text-[11px] text-slate-500 font-medium">
+            Regd. Off. & Works: Sy No. 60/3&4, Muneshwara Industrial Layout, Bangalore-562130
           </p>
           <p className="text-xs text-slate-500 mt-2 font-medium">
             Certificate Number: <span className="font-mono font-bold text-orange-700 bg-orange-50 px-2 py-0.5 rounded border border-orange-200">{card.certificateNo}</span>
@@ -214,13 +219,23 @@ export default function WarrantyCardPreview({ card, showActions = true }) {
         </div>
 
         {/* Certificate Footer */}
-        <div className="pt-6 border-t-2 border-orange-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p className="font-medium italic text-slate-600">
-            Manufactured by Sun Zone Solar System India Pvt. Ltd. • Sy No. 56/1, Byadarahalli, Magadi Main Road, Bangalore
-          </p>
-          <p className="text-[11px] font-semibold text-orange-600">
-            Helpline: +91 97400 97000 • orangesolar.co.in
-          </p>
+        <div className="pt-6 border-t-2 border-orange-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 relative z-10">
+          <div>
+            <p className="font-semibold text-slate-700">
+              BROUGHT TO YOU BY: SUN ZONE SOLAR SYSTEM INDIA PVT. LTD.
+            </p>
+            <p className="text-[11px] text-slate-500 mt-0.5">
+              # Sy No. 60/3&4, Muneshwara Industrial Layout, Puradapalya Village, Tavarekere Hobli, Bangalore-562130
+            </p>
+          </div>
+          <div className="text-right sm:text-right">
+            <p className="text-[11px] font-bold text-orange-700">
+              Helpline: 9164659666 / +91 97400 97000
+            </p>
+            <p className="text-[10px] text-slate-500">
+              web: www.orangesolar.co.in • email: sunzonesolar56@yahoo.co.in
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -19,7 +19,10 @@ import {
   Smartphone,
   ExternalLink,
   ShieldAlert,
+  ShieldCheck,
 } from 'lucide-react';
+import OrangeSolarLogo from '../../components/OrangeSolarLogo';
+import SolarWatermark from '../../components/SolarWatermark';
 
 export default function AdminDashboard() {
   const navigate = useNavigate();
@@ -94,16 +97,28 @@ export default function AdminDashboard() {
       <div className="flex-1 flex w-full min-h-0 overflow-hidden">
         <AdminSidebar />
 
-        <main className="flex-1 h-full overflow-y-auto p-4 sm:p-8 pb-24 md:pb-8">
+        <main className="flex-1 h-full overflow-y-auto p-4 sm:p-8 pb-24 md:pb-8 relative">
+          {/* Subtle Watermark */}
+          <SolarWatermark variant="emblem" size={380} className="opacity-[0.02]" />
+
           {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900">Admin Control Center</h1>
-              <p className="text-xs text-slate-500 mt-1">
-                Verify customer warranty submissions, advance milestone timelines, and trigger 3-way notification dispatches.
-              </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white border border-slate-200 rounded-3xl p-6 sm:p-7 mb-8 shadow-xs relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="hidden sm:block">
+                <OrangeSolarLogo className="h-12 w-auto" showTagline={true} />
+              </div>
+              <div>
+                <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                  Sun Zone Solar System India Pvt. Ltd. • ISO 9001:2015
+                </span>
+                <h1 className="text-xl sm:text-2xl font-black text-slate-900 mt-1">Admin Operations Control Center</h1>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  Verify customer warranty claims, validate equipment serials, issue tamper-proof certificates, and audit 3-way dispatches.
+                </p>
+              </div>
             </div>
-            <div className="flex items-center gap-3">
+
+            <div className="flex items-center gap-3 self-end sm:self-center shrink-0">
               <div className="text-right">
                 <span className="text-xs font-bold text-slate-900 block">{session.user.name}</span>
                 <span className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider flex items-center justify-end gap-1">
@@ -111,11 +126,13 @@ export default function AdminDashboard() {
                   System Online
                 </span>
               </div>
-              <div className="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-black text-sm shadow-md shadow-orange-500/20">
                 AD
               </div>
             </div>
           </div>
+
+          <div className="relative z-10">
 
           {/* Metric Overview */}
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-8">
@@ -267,6 +284,7 @@ export default function AdminDashboard() {
                 </table>
               </div>
             )}
+          </div>
           </div>
         </main>
       </div>

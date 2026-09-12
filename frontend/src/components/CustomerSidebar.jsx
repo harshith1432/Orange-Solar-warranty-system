@@ -9,6 +9,8 @@ import {
   LogOut,
 } from 'lucide-react';
 import { clearCustomerAuth } from '../utils/auth';
+import OrangeSolarLogo from './OrangeSolarLogo';
+import SolarWatermark from './SolarWatermark';
 
 export default function CustomerSidebar() {
   const location = useLocation();
@@ -22,8 +24,17 @@ export default function CustomerSidebar() {
   ];
 
   return (
-    <aside className="hidden md:flex w-64 bg-white border-r border-slate-200 flex-col justify-between shrink-0 sticky top-16 md:top-[90px] h-[calc(100vh-4rem)] md:h-[calc(100vh-90px)] overflow-y-auto z-30 self-start">
-      <div className="p-5">
+    <aside className="hidden md:flex w-64 bg-white border-r border-slate-200 flex-col justify-between shrink-0 sticky top-16 md:top-[90px] h-[calc(100vh-4rem)] md:h-[calc(100vh-90px)] overflow-y-auto z-30 self-start relative">
+      <SolarWatermark variant="sun" size={260} className="opacity-[0.025]" />
+      <div className="p-5 relative z-10">
+        {/* Brand Showcase Header */}
+        <div className="pb-4 mb-4 border-b border-orange-100 flex flex-col items-start">
+          <OrangeSolarLogo className="h-8 w-auto mb-1.5" showTagline={true} />
+          <div className="flex items-center gap-1 text-[10px] text-slate-500 font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>Customer E-Warranty Portal</span>
+          </div>
+        </div>
 
         <nav className="space-y-1">
           {links.map((link) => {

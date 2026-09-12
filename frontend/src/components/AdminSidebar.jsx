@@ -12,6 +12,7 @@ import {
 import { clearAdminAuth } from '../utils/auth';
 import { warrantiesApi } from '../utils/api';
 import AdminBottomNav from './AdminBottomNav';
+import OrangeSolarLogo from './OrangeSolarLogo';
 
 export default function AdminSidebar() {
   const location = useLocation();
@@ -44,6 +45,15 @@ export default function AdminSidebar() {
     <>
       <aside className="hidden md:flex w-64 bg-slate-900 text-slate-300 flex-col justify-between shrink-0 sticky top-16 md:top-[90px] h-[calc(100vh-4rem)] md:h-[calc(100vh-90px)] overflow-y-auto z-30 self-start border-r border-slate-800">
         <div className="p-5">
+          {/* Admin Brand Banner */}
+          <div className="pb-4 mb-4 border-b border-slate-800 flex flex-col items-start">
+            <OrangeSolarLogo variant="white" className="h-8 w-auto mb-1.5" showTagline={true} />
+            <div className="flex items-center gap-1 text-[10px] text-slate-400 font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Central Admin Console</span>
+            </div>
+          </div>
+
           <nav className="space-y-1">
             {links.map((link) => {
               const Icon = link.icon;

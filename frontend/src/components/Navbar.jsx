@@ -13,6 +13,7 @@ import {
   Users,
 } from 'lucide-react';
 import { getAuthUser, isAuthenticated, clearAuth, isAdmin } from '../utils/auth';
+import OrangeSolarLogo from './OrangeSolarLogo';
 
 export default function Navbar() {
   const location = useLocation();
@@ -74,24 +75,14 @@ export default function Navbar() {
             </button>
           )}
 
-          {/* Brand */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group shrink min-w-0">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-orange-500 via-amber-500 to-amber-600 flex items-center justify-center text-white shadow-md shadow-orange-500/25 group-hover:scale-105 transition-transform shrink-0">
-              <ShieldCheck className="w-4.5 h-4.5 sm:w-6 sm:h-6" />
+          {/* Brand Logo matching Sun Zone Orange Solar Official Guidelines */}
+          <Link to="/" className="flex items-center gap-2 group shrink min-w-0">
+            <div className="h-9 sm:h-10 py-0.5 flex items-center">
+              <OrangeSolarLogo className="h-8 sm:h-9 w-auto group-hover:scale-[1.02] transition-transform duration-200" />
             </div>
-            <div className="min-w-0">
-              <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="text-sm sm:text-lg font-bold tracking-tight text-slate-900 leading-tight whitespace-nowrap">
-                  ORANGE <span className="text-orange-600">SOLAR</span>
-                </span>
-                <span className="hidden sm:inline-flex items-center text-[10px] uppercase font-semibold tracking-wider px-2 py-0.5 rounded bg-orange-100/80 text-orange-800 border border-orange-200/60 whitespace-nowrap">
-                  E-Warranty
-                </span>
-              </div>
-              <p className="text-[9px] sm:text-[10px] text-slate-500 font-normal leading-none truncate max-w-[130px] sm:max-w-none">
-                Sun Zone Solar System India Pvt. Ltd.
-              </p>
-            </div>
+            <span className="hidden lg:inline-flex items-center text-[10px] uppercase font-black tracking-wider px-2 py-0.5 rounded bg-orange-100/90 text-orange-800 border border-orange-200/80 whitespace-nowrap shadow-2xs">
+              E-Warranty
+            </span>
           </Link>
         </div>
 
@@ -164,17 +155,8 @@ export default function Navbar() {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-800 mb-5">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 text-white flex items-center justify-center font-black text-xs shadow-md shadow-orange-500/20 shrink-0">
-                    AD
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-xs font-bold text-white truncate leading-tight">Admin Console</h4>
-                    <span className="text-[10px] font-semibold text-emerald-400 flex items-center gap-1 mt-0.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                      System Online
-                    </span>
-                  </div>
+                <div className="flex items-center gap-2">
+                  <OrangeSolarLogo variant="white" className="h-7 w-auto" />
                 </div>
                 <button
                   onClick={() => setAdminDrawerOpen(false)}

@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import { authApi } from '../utils/api';
 import { setAuth, getAuthUser, isAuthenticated, isAdmin } from '../utils/auth';
 import { ShieldCheck, ArrowRight, Lock, Mail, Eye, EyeOff } from 'lucide-react';
+import OrangeSolarLogo from '../components/OrangeSolarLogo';
+import SolarWatermark from '../components/SolarWatermark';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -76,20 +78,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 font-sans">
+    <div className="min-h-screen flex flex-col bg-slate-50 font-sans relative overflow-hidden">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6">
-        <div className="bg-white border border-slate-200 rounded-2xl p-7 sm:p-9 shadow-xs max-w-md w-full">
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-11 h-11 rounded-xl bg-orange-50 border border-orange-100 text-orange-600 flex items-center justify-center shadow-2xs">
-              <ShieldCheck className="w-6 h-6" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-slate-900 tracking-tight">Orange Solar Sign In</h1>
-              <p className="text-xs text-slate-500 font-normal">Enter your credentials to access your dashboard</p>
-            </div>
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 relative z-10">
+        <div className="bg-white border border-slate-200 rounded-2xl p-7 sm:p-9 shadow-lg max-w-md w-full relative overflow-hidden">
+          {/* Subtle Watermark inside card */}
+          <SolarWatermark variant="sun" size={260} className="opacity-[0.035]" />
+
+          {/* Header with Official Orange Solar Logo */}
+          <div className="flex flex-col items-center text-center mb-6 relative z-10">
+            <OrangeSolarLogo className="h-10 sm:h-12 w-auto mb-2" showTagline={true} />
+            <h1 className="text-lg font-extrabold text-slate-900 tracking-tight mt-1">Authorized Portal Sign In</h1>
+            <p className="text-xs text-slate-500 font-normal">Customer E-Warranty & Central Admin Access</p>
           </div>
 
           {error && (

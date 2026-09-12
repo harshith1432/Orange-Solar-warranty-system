@@ -25,6 +25,9 @@ import {
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { isAuthenticated, isAdmin } from '../utils/auth';
+import OrangeSolarLogo from '../components/OrangeSolarLogo';
+import SolarWatermark from '../components/SolarWatermark';
+import SunZoneCertifications from '../components/SunZoneCertifications';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -32,41 +35,65 @@ export default function HomePage() {
   const isAdministrator = isAdmin();
 
   // Interactive States
-  const [activeCategory, setActiveCategory] = useState('panels');
+  const [activeCategory, setActiveCategory] = useState('waterHeater');
   const [openFaq, setOpenFaq] = useState(0);
 
   const categories = {
-    panels: {
-      name: 'Solar Panels & Modules',
+    waterHeater: {
+      name: 'Orange Diamond Glass Line Solar Water Heater',
+      shortName: 'Glass Line (ETC)',
       icon: Sun,
-      warranty: '25-Year Linear Performance Warranty',
-      highlight: 'Monocrystalline & Bifacial Tier-1 Panels',
-      specs: ['90% efficiency at year 10', '80% efficiency at year 25', 'Zero-paper claim workflow', 'Instant QR code scan for panel serials'],
-      tag: 'Enterprise'
+      warranty: '20-Year Guarantee (Special Glass Coated)',
+      highlight: 'Withstands water hardness up to 3000 PPM',
+      specs: [
+        'Furnace coated glass lining at 850°C',
+        'High-density PUF insulation for overnight heat retention',
+        '3-Target Copper, Aluminum & Nickel coated ETC tubes',
+        'Heavy-gauge inner tank with special inspection manhole'
+      ],
+      tag: '20 Year Guarantee'
     },
-    inverters: {
-      name: 'Grid & Hybrid Inverters',
+    fpc: {
+      name: 'Orange FPC Pressurised Solar Water Heater',
+      shortName: 'FPC Pressurised',
+      icon: Shield,
+      warranty: '10-Year Manufacturer Warranty',
+      highlight: 'Tested up to 10 kg/cm² pressure',
+      specs: [
+        'FPC collector with 96.5% high absorbency rate',
+        'Withstands working pressure up to 8 kg/cm²',
+        'Ideal for booster pump & multi-shower applications',
+        'Polyester powder-coated G.I. support structure'
+      ],
+      tag: 'Heavy Duty'
+    },
+    heatpump: {
+      name: 'Orange Domestic & Industrial Heat Pumps',
+      shortName: 'Heat Pumps',
       icon: Zap,
-      warranty: '10-Year Comprehensive Cover',
-      highlight: 'String, Micro & Hybrid Inverters',
-      specs: ['Complete PCB & capacitor cover', 'Free on-site replacement inspection', 'Firmware failure protection', 'Real-time telemetry tracking'],
-      tag: 'Standard'
+      warranty: 'Up to 75% Energy Saving Assurance',
+      highlight: 'German Technology High-Efficiency Heating',
+      specs: [
+        'Available in 3.8kW, 5.3kW, 8kW & Industrial Capacities',
+        'Operates in all weather conditions & cold seasons',
+        'Environmentally friendly low-GWP refrigerant',
+        'Whisper-quiet compressor operation (<50dB)'
+      ],
+      tag: '75% Energy Saving'
     },
-    batteries: {
-      name: 'Lithium Battery Storage (ESS)',
-      icon: BatteryCharging,
-      warranty: '7-Year / 6000 Cycles Guarantee',
-      highlight: 'LiFePO4 Home & Commercial ESS',
-      specs: ['Guaranteed 70% depth of discharge', 'BMS firmware health certification', 'Thermal management warranty', 'Rapid dispatch support'],
-      tag: 'Industrial'
-    },
-    industrial: {
-      name: 'Commercial & Solar Pumps',
+    rooftop: {
+      name: 'Orange Solar Rooftop On-Grid & PM Surya Ghar',
+      shortName: 'Solar Rooftop',
       icon: Award,
-      warranty: '5-Year On-Site Protection',
-      highlight: 'Heavy Agricultural & Rooftop Projects',
-      specs: ['Direct manufacturer dispatch priority', 'Dedicated engineer milestone tracking', 'Multi-device site certification', 'Custom SLA agreements'],
-      tag: 'Commercial'
+      warranty: '25+ Years High-Performance German Technology',
+      highlight: 'PM Surya Ghar / Muft Bijli Yojana Subsidy Eligible',
+      specs: [
+        'Government subsidy assistance up to ₹78,000',
+        'Bidirectional Net-Metering with DISCOM grid export',
+        'Commercial & industrial 40% accelerated depreciation',
+        'Zero battery maintenance with seamless net metering'
+      ],
+      tag: 'PM Surya Ghar'
     }
   };
 
@@ -109,41 +136,47 @@ export default function HomePage() {
       />
 
       {/* HERO SECTION */}
-      <div className="flex-1 max-w-6xl mx-auto px-4 pt-12 pb-16 sm:pt-16 sm:pb-20 flex flex-col items-center justify-center text-center relative z-10">
+      <div className="flex-1 max-w-6xl mx-auto px-4 pt-10 pb-16 sm:pt-14 sm:pb-20 flex flex-col items-center justify-center text-center relative z-10">
         
         {/* Official Company Badge */}
-        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-3.5 py-1 rounded-full bg-white border border-orange-200 shadow-xs text-orange-900 text-[11px] sm:text-xs font-medium mb-6 max-w-full">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-white border border-orange-200 shadow-xs text-orange-900 text-[11px] sm:text-xs font-semibold mb-6 max-w-full">
           <span className="flex h-2 w-2 relative shrink-0">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
           </span>
-          <span className="truncate max-w-[220px] sm:max-w-none">Official Orange Solar Digital E-Warranty Platform</span>
+          <span className="truncate max-w-[220px] sm:max-w-none">Sun Zone Solar System India Pvt. Ltd.</span>
           <span className="text-orange-300">|</span>
-          <span className="text-orange-700 font-semibold whitespace-nowrap shrink-0">ISO 9001:2015</span>
+          <span className="text-orange-700 font-bold whitespace-nowrap shrink-0">Official E-Warranty Platform</span>
         </div>
 
-        {/* Brand Shield Emblem */}
-        <div className="relative group mb-5">
-          <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl bg-gradient-to-tr from-orange-500 via-amber-500 to-amber-600 flex items-center justify-center text-white shadow-lg shadow-orange-500/20 ring-4 ring-orange-100 transition-transform duration-300 group-hover:scale-105">
-            <ShieldCheck className="w-9 h-9" />
+        {/* Official Brand Logo */}
+        <div className="mb-6 flex flex-col items-center">
+          <OrangeSolarLogo className="h-16 sm:h-20 md:h-24 w-auto drop-shadow-sm" />
+          <div className="mt-2 text-xs sm:text-sm font-black tracking-widest text-orange-600 uppercase">
+            Powering Infinity
           </div>
-          <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-white shadow-sm border border-orange-200 flex items-center justify-center text-orange-600">
-            <Sun className="w-3.5 h-3.5" />
+          <div className="text-[11px] sm:text-xs font-medium text-slate-500 italic mt-0.5">
+            Transforming solar energy towards a sustainable future...
           </div>
         </div>
 
         {/* Hero Headlines - Professional Corporate Hierarchy */}
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 mb-2 sm:mb-3">
-          E-Warranty System
+        <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-2 sm:mb-3">
+          Digital E-Warranty Issuance & Verification
         </h1>
         
-        <p className="text-lg sm:text-xl font-semibold tracking-tight text-orange-600 mb-4">
-          Secure • Fast • Paperless
+        <p className="text-base sm:text-lg font-bold tracking-tight text-orange-600 mb-4">
+          Direct Manufacturer Assurance • Tamper-Proof QR Cards • Instant Mobile Claim
         </p>
 
-        <p className="max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-12">
-          The enterprise warranty management platform by Sun Zone Solar System India Pvt. Ltd. Register manufacturer product warranties, track real-time verification milestones, and access tamper-proof digital certificates.
+        <p className="max-w-2xl text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-8">
+          The centralized warranty registry for Orange Solar water heaters, high-efficiency domestic & industrial heat pumps, and solar rooftop systems manufactured by Sun Zone Solar System India Pvt. Ltd.
         </p>
+
+        {/* Official Certifications Row from Brochure */}
+        <div className="w-full max-w-3xl mb-10">
+          <SunZoneCertifications />
+        </div>
 
         {/* FEATURE HIGHLIGHTS GRID - Clean Corporate Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-5xl text-left mb-14">
@@ -256,7 +289,7 @@ export default function HomePage() {
                   }`}
                 >
                   <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-orange-600' : 'text-slate-400'}`} />
-                  <span className="truncate">{cat.name.split(' ')[0]}</span>
+                  <span className="truncate">{cat.shortName || cat.name}</span>
                 </button>
               );
             })}
@@ -454,39 +487,40 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-left">
             <div>
-              <div className="flex items-center gap-2 mb-2.5">
-                <div className="w-6 h-6 rounded bg-orange-600 text-white flex items-center justify-center font-bold text-xs">
-                  OS
-                </div>
-                <span className="font-bold text-white text-sm">ORANGE SOLAR</span>
+              <div className="flex items-center gap-2 mb-3">
+                <OrangeSolarLogo variant="white" className="h-9 w-auto" showTagline={true} />
               </div>
               <p className="text-slate-400 text-xs leading-relaxed mb-3 font-normal">
-                Sun Zone Solar System India Pvt. Ltd. is a pioneer in solar water heaters, high-efficiency heat pumps, and rooftop solar power systems across India.
+                Manufactured & Marketed by Sun Zone Solar System India Pvt. Ltd. Pioneers in Diamond Glass Line Solar Water Heaters, Heat Pumps, and Rooftop Solar Plants.
               </p>
-              <div className="text-orange-400 font-semibold text-xs">
-                📞 +91 97400 97000 / 080 2314 5656
+              <div className="text-orange-400 font-semibold text-xs space-y-0.5">
+                <div>📞 Mob: 9164659666 / +91 97400 97000</div>
+                <div>✉️ sunzonesolar56@yahoo.co.in</div>
               </div>
             </div>
 
             <div>
-              <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-2.5">Corporate Headquarters</h4>
+              <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-2.5">Regd. Off. & Works</h4>
               <p className="text-slate-400 text-xs leading-relaxed mb-2 font-normal">
-                Sy No. 56/1, Byadarahalli, Magadi Main Road,<br />
-                Bangalore - 560091, Karnataka, India
+                SUN ZONE SOLAR SYSTEM INDIA PVT. LTD.<br />
+                # Sy No. 60/3&4, Muneshwara Industrial Layout,<br />
+                Puradapalya Village, Tavarekere Hobli,<br />
+                Bangalore - 562130, Karnataka, INDIA
               </p>
               <p className="text-slate-400 text-xs font-normal">
-                Email: <a href="mailto:info@sunzonesolar.in" className="text-orange-400 hover:underline">info@sunzonesolar.in</a><br />
-                Mon - Sat: 9:00 am - 6:00 pm
+                Web: <a href="https://www.orangesolar.co.in" target="_blank" rel="noreferrer" className="text-orange-400 hover:underline">www.orangesolar.co.in</a><br />
+                Follow us on Facebook, Instagram, LinkedIn, YouTube
               </p>
             </div>
 
             <div>
-              <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-2.5">Portals & Links</h4>
+              <h4 className="text-white font-semibold text-xs uppercase tracking-wider mb-2.5">Portals & Services</h4>
               <ul className="space-y-1.5 text-xs font-normal">
                 <li><Link to="/customer/products" className="hover:text-white transition-colors">Orange Solar Product Catalog</Link></li>
-                <li><Link to="/register" className="hover:text-white transition-colors">Register Customer Account</Link></li>
-                <li><Link to="/login" className="hover:text-white transition-colors">Authorized Sign In</Link></li>
-                <li><a href="https://orangesolar.co.in" target="_blank" rel="noreferrer" className="text-orange-400 hover:underline">Official Company Website ↗</a></li>
+                <li><Link to="/customer/apply" className="hover:text-white transition-colors">Digital Warranty Claim Portal</Link></li>
+                <li><Link to="/register" className="hover:text-white transition-colors">Customer Account Registration</Link></li>
+                <li><Link to="/login" className="hover:text-white transition-colors">Customer & Dealer Sign In</Link></li>
+                <li><Link to="/verify/EW-2024-8841" className="hover:text-white transition-colors">Public QR Verification Registry</Link></li>
               </ul>
             </div>
           </div>

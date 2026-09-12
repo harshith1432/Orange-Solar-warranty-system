@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar';
 import { authApi } from '../utils/api';
 import { setAuth } from '../utils/auth';
 import { User, Mail, Phone, Lock, MapPin, Calendar, ArrowRight, ShieldCheck } from 'lucide-react';
+import OrangeSolarLogo from '../components/OrangeSolarLogo';
+import SolarWatermark from '../components/SolarWatermark';
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -83,19 +85,22 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50">
+    <div className="min-h-screen flex flex-col bg-slate-50 relative overflow-hidden">
       <Navbar />
 
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-8">
-        <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-sm max-w-xl w-full">
+      <main className="flex-1 flex items-center justify-center p-4 sm:p-8 relative z-10">
+        <div className="bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 shadow-lg max-w-xl w-full relative overflow-hidden">
+          {/* Subtle Watermark inside registration card */}
+          <SolarWatermark variant="logo" size={320} className="opacity-[0.035]" />
+
           {/* Header */}
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-12 h-12 rounded-2xl bg-orange-100 text-orange-600 flex items-center justify-center shadow-xs">
-              <ShieldCheck className="w-6 h-6" />
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6 pb-6 border-b border-orange-100 relative z-10">
+            <div className="shrink-0">
+              <OrangeSolarLogo className="h-12 w-auto" showTagline={true} />
             </div>
-            <div>
-              <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Register with Orange Solar</h1>
-              <p className="text-xs text-slate-500 font-normal">Create your official warranty account to track & protect your solar systems</p>
+            <div className="text-center sm:text-left">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">Customer Registration</h1>
+              <p className="text-xs text-slate-500 font-normal">Official Sun Zone E-Warranty & Solar Equipment Account</p>
             </div>
           </div>
 
