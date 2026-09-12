@@ -34,6 +34,7 @@ import {
   FileCheck,
   Clock,
   Shield,
+  Globe2,
   ExternalLink
 } from 'lucide-react';
 
@@ -79,72 +80,76 @@ export default function LoginPage() {
     }
   }, [location]);
 
-  // Product catalog items
+  // Product catalog items from Supreme Solar Reference Platform
   const premiumProducts = [
     {
-      id: 'etc-glassline',
-      name: 'Orange Diamond Glass Line Solar Water Heater',
-      model: 'Glass Line (ETC 200 LPD)',
+      id: 'solar-water-heaters',
+      name: 'Solar Water Heaters',
+      model: 'Glass Line & Stainless Steel (ETC/FPC)',
       category: 'Solar Water Heater',
+      image: '/assets/images/solar.png',
       tag: '20-Year Guarantee',
       warranty: '20 Years',
-      description: 'Engineered with German diamond glass-lining fused at 850°C. Withstands extreme water hardness up to 3000 PPM.',
+      description: 'High-efficiency evacuated tube & flat plate solar water heaters engineered with German diamond glass-lining and multi-target copper absorption.',
       highlights: [
-        'Furnace coated glass lining at 850°C',
+        'Furnace coated glass lining fused at 850°C',
         'High-density PUF insulation for overnight heat retention',
         '3-Target Copper, Aluminum & Nickel coated ETC tubes',
-        'Heavy-gauge inner tank with special inspection manhole'
+        'Withstands extreme water hardness up to 3000 PPM'
       ],
       icon: Sun,
       color: 'from-blue-600 to-cyan-500'
     },
     {
-      id: 'fpc-pressurised',
-      name: 'Orange FPC Pressurised Solar Water Heater',
-      model: 'FPC High Pressure 300 LPD',
-      category: 'Solar Water Heater',
-      tag: '10-Year Warranty',
-      warranty: '10 Years',
-      description: 'Tested up to 10 kg/cm² working pressure. Ultrasonic-welded copper collector with 96.5% solar absorption.',
+      id: 'kitchen-chimneys',
+      name: 'Kitchen Chimneys',
+      model: 'Thermal Auto-Clean Touch & Gesture',
+      category: 'Kitchen Appliance',
+      image: '/assets/images/chimney.png',
+      tag: 'Lifetime Motor Warranty',
+      warranty: '5-10 Years',
+      description: 'Advanced heat auto-clean kitchen chimneys with powerful suction, curved tempered glass, baffle filters, and touch/motion sensor controls.',
       highlights: [
-        'FPC collector with 96.5% high absorbency rate',
-        'Withstands working pressure up to 8 kg/cm²',
-        'Ideal for pressure pumps & luxury multi-shower systems',
-        'Weatherproof polyester powder-coated G.I. support structure'
+        'Thermal auto-clean technology with stainless steel oil collector',
+        'High suction power with low-noise copper winding motor',
+        'Tough curved tempered glass hood design',
+        'Touch panel with motion sensor gesture control'
       ],
       icon: Flame,
       color: 'from-cyan-600 to-blue-600'
     },
     {
-      id: 'heat-pump',
-      name: 'Orange Domestic & Commercial Heat Pumps',
-      model: 'EcoHeat 3.8kW / 300L',
-      category: 'Heat Pump',
-      tag: '75% Energy Saving',
+      id: 'water-purifiers',
+      name: 'Water Purifiers',
+      model: 'RO + UV + UF + Alkaline TDS Controller',
+      category: 'Water Purifier',
+      image: '/assets/images/purifier.png',
+      tag: '100% Pure Drinking Water',
       warranty: '5 Years',
-      description: 'German thermodynamic heat exchange technology. Operates consistently in cold, cloudy, and night conditions.',
+      description: 'Multi-stage RO + UV + UF + TDS controller water purifiers providing crystal-clean, mineral-enriched 100% safe drinking water.',
       highlights: [
-        'Cuts water heating electricity costs by up to 75%',
-        'Operates in all weather conditions down to -7°C',
-        'Environmentally friendly low-GWP R410A refrigerant',
-        'Whisper-quiet compressor operation (<50dB)'
+        'Advanced multi-stage filtration with high-recovery RO membrane',
+        'UV disinfection and active copper/alkaline mineral infusion',
+        'Food-grade transparent storage tank',
+        'Smart LED indicators for tank full and filter life'
       ],
       icon: Zap,
       color: 'from-blue-700 to-indigo-600'
     },
     {
-      id: 'solar-rooftop',
-      name: 'Orange Solar Rooftop On-Grid Power Plant',
-      model: 'Mono PERC 3kW - 10kW',
-      category: 'Solar Rooftop',
-      tag: 'PM Surya Ghar Eligible',
-      warranty: '25+ Years',
-      description: 'High-efficiency mono-crystalline solar panels eligible for central government subsidy up to ₹78,000.',
+      id: 'electric-geysers',
+      name: 'Electric Geysers',
+      model: 'Instant & Storage Glass-Lined 8-Bar',
+      category: 'Electric Geyser',
+      image: '/assets/images/geyser.png',
+      tag: '8-Bar High Pressure',
+      warranty: '7 Years',
+      description: 'Instant and storage electric water heaters with heavy-gauge glass-lined tanks, Incoloy 800 heating elements, and smart energy-saving thermostats.',
       highlights: [
-        'Central government subsidy assistance up to ₹78,000',
-        'Bidirectional Net-Metering with DISCOM grid export',
-        'Tier-1 Mono PERC solar modules with 21.5% efficiency',
-        'Smart Wi-Fi mobile inverter generation monitoring'
+        'Heavy-gauge inner tank with vitreous enamel coating',
+        'High-density CFC-free PUF insulation for energy efficiency',
+        'Incoloy 800 heating element for rapid hot water',
+        'Suitable for high-rise buildings (up to 8 bar working pressure)'
       ],
       icon: Award,
       color: 'from-indigo-600 to-cyan-600'
@@ -364,74 +369,83 @@ export default function LoginPage() {
       {/* Sticky Global Navigation */}
       <Navbar />
 
-      {/* 1. HERO SECTION - Deep Navy Solar Gradient */}
-      <section
-        id="hero"
-        className="relative bg-gradient-to-b from-[#0a193c] via-[#001f3f] to-[#003264] text-white pt-12 pb-24 sm:pt-16 sm:pb-32 overflow-hidden"
-      >
-        {/* Ambient lighting / radial glow */}
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-blue-600/20 blur-[130px] rounded-full pointer-events-none" />
-        <div className="absolute top-1/3 -right-32 w-[500px] h-[400px] bg-cyan-400/15 blur-[120px] rounded-full pointer-events-none" />
+      {/* 1. HERO SECTION WITH solar-cat.png BACKGROUND & SUN GLOW */}
+      <section id="hero" className="hero-section">
+        {/* Background Image with Dark Gradient Overlay */}
+        <div className="hero-bg" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Trust Badges Bar */}
-          <div className="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-3 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/15 text-xs font-semibold text-blue-100 mb-6 shadow-inner">
-            <span className="flex items-center gap-1.5">
-              <Sun className="w-3.5 h-3.5 text-amber-300" />
-              100% Green Energy
+        {/* Animated Sun Glow */}
+        <div className="sun-glow" />
+
+        {/* Floating Product (Desktop) */}
+        <div className="floating-product hidden lg:block">
+          <img
+            src="/assets/images/solar.png"
+            alt="Solar Water Heater"
+            className="w-full h-auto drop-shadow-2xl"
+          />
+        </div>
+
+        {/* Central Glassmorphic Card */}
+        <div className="hero-content glass-card-hero mx-auto">
+          {/* Trust Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-4">
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold text-white border border-white/20">
+              ISO 9001 & 14001 Certified
             </span>
-            <span className="w-1 h-1 bg-white/40 rounded-full" />
-            <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              ISO 9001:2015 Certified
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold text-white border border-white/20">
+              16+ Years of Excellence
             </span>
-            <span className="w-1 h-1 bg-white/40 rounded-full" />
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-300" />
-              20-Year Guarantee
+            <span className="bg-white/15 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-semibold text-white border border-white/20">
+              4500+ Happy Dealers
             </span>
           </div>
 
-          {/* Golden Gradient Title */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-4 max-w-4xl mx-auto leading-tight sm:leading-none">
-            <span className="bg-gradient-to-r from-white via-amber-100 to-[#ffc107] bg-clip-text text-transparent">
-              Warm Water, Powered by the Sun
-            </span>
+          {/* Hero Title */}
+          <h1 className="hero-title text-white mb-4">
+            Warm Water, <br />
+            <span className="highlight-gold">Powered by the Sun</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
-            India's Most Trusted Solar Water Heating Solutions. Engineered with German diamond glass-lining and multi-target copper absorption for maximum durability in all water conditions.
+          <p className="hero-subtitle text-slate-100 max-w-xl mx-auto mb-8 font-normal">
+            Register your Supreme Solar Water Heater warranty in under 2 minutes. Enjoy peace of mind with India's most trusted solar brand.
           </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+          {/* Hero Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5">
             <button
               onClick={() => scrollToForm('register')}
-              className="w-full sm:w-auto btn-supreme px-7 py-3 rounded-full text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 active:scale-95"
+              className="btn-supreme px-8 py-3.5 rounded-full text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95 w-full sm:w-auto"
             >
-              <span>Register Product Warranty</span>
+              <span>Register Your Product Now</span>
               <ArrowRight className="w-4 h-4" />
             </button>
             <button
               onClick={() => scrollToForm('signin')}
-              className="w-full sm:w-auto px-7 py-3 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-sm transition-all active:scale-95"
+              className="px-8 py-3.5 rounded-full text-sm font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-md transition-all active:scale-95 w-full sm:w-auto"
             >
-              Dealer / Admin Sign In
+              Admin Login
             </button>
           </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator flex flex-col items-center gap-1 text-white/80">
+          <span className="text-[11px] uppercase tracking-widest font-semibold">Scroll to explore</span>
+          <span className="text-sm animate-bounce">↓</span>
         </div>
       </section>
 
       {/* 2. OVERLAPPING ABOUT & INNOVATION FLOATING STATS CARD */}
-      <section className="relative z-20 -mt-14 sm:-mt-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-        <div className="bg-gradient-to-br from-white via-white to-[#eef5ff] border border-blue-100/90 rounded-[28px] sm:rounded-[36px] p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,31,63,0.12)]">
+      <section className="relative z-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
+        <div className="about-section">
           <div className="text-center max-w-2xl mx-auto mb-8">
             <div className="inline-flex items-center gap-1.5 text-xs font-bold text-[#007bff] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full mb-2 border border-blue-100">
               <Sparkles className="w-3.5 h-3.5 text-[#007bff]" />
               Reliability & Legacy
             </div>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#001f3f] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#001f3f] tracking-tight">
               16+ Years of Solar Innovation & Trust
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-1">
@@ -439,113 +453,98 @@ export default function LoginPage() {
             </p>
           </div>
 
-          {/* 4 Glass Stat Counters */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
-            <div className="bg-white/80 border border-blue-100 rounded-2xl p-4 sm:p-5 text-center shadow-xs hover:shadow-md transition-shadow">
-              <div className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#007bff] to-[#00c6ff] bg-clip-text text-transparent mb-1">
+          {/* 4 Stats */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#007bff] to-[#00c6ff] mb-1">
                 16+
               </div>
               <div className="text-xs sm:text-sm font-bold text-[#001f3f]">Years of Excellence</div>
               <p className="text-[11px] text-slate-500 mt-0.5">Continuous innovation</p>
             </div>
-
-            <div className="bg-white/80 border border-blue-100 rounded-2xl p-4 sm:p-5 text-center shadow-xs hover:shadow-md transition-shadow">
-              <div className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#007bff] to-[#00c6ff] bg-clip-text text-transparent mb-1">
+            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#007bff] to-[#00c6ff] mb-1">
                 4,500+
               </div>
-              <div className="text-xs sm:text-sm font-bold text-[#001f3f]">Distributors & Retailers</div>
+              <div className="text-xs sm:text-sm font-bold text-[#001f3f]">Happy Dealers</div>
               <p className="text-[11px] text-slate-500 mt-0.5">Extensive dealer reach</p>
             </div>
-
-            <div className="bg-white/80 border border-blue-100 rounded-2xl p-4 sm:p-5 text-center shadow-xs hover:shadow-md transition-shadow">
-              <div className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#007bff] to-[#00c6ff] bg-clip-text text-transparent mb-1">
+            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#007bff] to-[#00c6ff] mb-1">
                 70+
               </div>
               <div className="text-xs sm:text-sm font-bold text-[#001f3f]">Direct Dealerships</div>
-              <p className="text-[11px] text-slate-500 mt-0.5">Across metro & tier-2 hubs</p>
+              <p className="text-[11px] text-slate-500 mt-0.5">Across metro hubs</p>
             </div>
-
-            <div className="bg-white/80 border border-blue-100 rounded-2xl p-4 sm:p-5 text-center shadow-xs hover:shadow-md transition-shadow">
-              <div className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-[#007bff] to-[#00c6ff] bg-clip-text text-transparent mb-1">
-                24+
+            <div className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 text-center hover:-translate-y-1 transition-transform">
+              <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#007bff] to-[#00c6ff] mb-1">
+                24/7
               </div>
-              <div className="text-xs sm:text-sm font-bold text-[#001f3f]">States Pan-India</div>
+              <div className="text-xs sm:text-sm font-bold text-[#001f3f]">Customer Support</div>
               <p className="text-[11px] text-slate-500 mt-0.5">Prompt doorstep service</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. OUR PREMIUM RANGE PRODUCT SHOWCASE */}
-      <section className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-[#007bff] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-            Engineered For High Hardness & Pressure
-          </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-[#001f3f] tracking-tight mt-3">
-            Our Premium Range
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 mt-2">
-            Built with food-grade stainless steel and high-durability diamond glass-lining designed for Indian water conditions.
-          </p>
-        </div>
+      {/* 3. OUR PRODUCTS SHOWCASE - 4 AUTHENTIC PRODUCT CARDS */}
+      <section className="products-section">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-bold text-[#007bff] uppercase tracking-wider bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+              Our Products
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#001f3f] tracking-tight mt-3">
+              Engineered For High Hardness & Pressure
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              Explore our complete product lineup built with German glass lining and industrial grade components.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {premiumProducts.map((p) => {
-            const Icon = p.icon;
-            return (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {premiumProducts.map((p) => (
               <div
                 key={p.id}
-                className="group bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 hover:border-blue-300 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                onClick={() => scrollToForm('register', p)}
+                className="product-card group cursor-pointer"
               >
-                <div>
-                  <div className="flex items-start justify-between gap-3 mb-4">
-                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${p.color} text-white flex items-center justify-center shadow-md`}>
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="px-3 py-1 text-xs font-bold rounded-full bg-blue-50 text-[#007bff] border border-blue-200">
+                <div className="product-image-wrapper">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="max-h-full object-contain"
+                  />
+                </div>
+                <div className="p-5 flex flex-col justify-between flex-1">
+                  <div>
+                    <span className="inline-block px-2.5 py-0.5 text-[10px] font-bold rounded-full bg-blue-50 text-[#007bff] mb-2 border border-blue-100">
                       {p.tag}
                     </span>
+                    <h3 className="text-base font-bold text-[#001f3f] group-hover:text-[#007bff] transition-colors mb-1.5">
+                      {p.name}
+                    </h3>
+                    <p className="text-xs text-slate-500 line-clamp-3 leading-relaxed">
+                      {p.description}
+                    </p>
                   </div>
-
-                  <h3 className="text-lg sm:text-xl font-bold text-[#001f3f] group-hover:text-[#007bff] transition-colors">
-                    {p.name}
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1 mb-4 leading-relaxed">
-                    {p.description}
-                  </p>
-
-                  {/* Highlights */}
-                  <ul className="space-y-2 mb-6 text-xs text-slate-600">
-                    {p.highlights.map((h, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <div className="text-xs text-slate-500">
-                    Official Warranty: <strong className="text-[#001f3f]">{p.warranty}</strong>
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[11px] font-semibold text-slate-500">
+                      Warranty: <strong className="text-[#001f3f]">{p.warranty}</strong>
+                    </span>
+                    <span className="text-xs font-bold text-[#007bff] flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                      Register <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
                   </div>
-                  <button
-                    onClick={() => scrollToForm('register', p)}
-                    className="btn-supreme px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm active:scale-95"
-                  >
-                    <span>Register Warranty</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* 4. WHY THOUSANDS CHOOSE US */}
-      <section className="bg-gradient-to-b from-[#eef5ff] to-[#f5f7fb] py-16 sm:py-20 border-y border-blue-100">
+      <section className="why-section bg-gradient-to-b from-[#ffffff] to-[#f0f7ff] py-16 sm:py-20 border-y border-blue-100">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-bold text-[#007bff] uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-blue-200 shadow-2xs">
@@ -582,7 +581,7 @@ export default function LoginPage() {
 
             <div className="bg-white rounded-2xl p-6 border border-blue-100 shadow-xs hover:shadow-md transition-shadow">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-[#007bff] to-[#00c6ff] text-white flex items-center justify-center mb-4 shadow-sm">
-                <Zap className="w-6 h-6" />
+                <Globe2 className="w-6 h-6" />
               </div>
               <h3 className="text-base font-bold text-[#001f3f] mb-1">All-Weather Efficiency</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
@@ -603,10 +602,13 @@ export default function LoginPage() {
         </div>
       </section>
 
+      {/* Wave Transition Divider */}
+      <div className="wave-divider" />
+
       {/* 5. DUAL-TABBED PORTAL FORM SECTION (#formSection) */}
       <section
         id="formSection"
-        className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#001f3f] via-[#0a193c] to-[#003264] text-white relative"
+        className="form-section text-white relative"
       >
         <div className="max-w-4xl mx-auto">
           {/* Section Header */}
@@ -962,35 +964,42 @@ export default function LoginPage() {
                 <div className="absolute top-0 right-0 w-48 h-48 bg-[#007bff]/15 blur-3xl rounded-full pointer-events-none" />
 
                 <div className="relative z-10">
-                  <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-cyan-300 uppercase mb-4 border border-white/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <img
+                      src="/assets/Supreme Logo-2.png"
+                      alt="Supreme Solar"
+                      className="h-9 sm:h-11 w-auto object-contain brightness-125"
+                    />
+                  </div>
+                  <div className="inline-flex items-center gap-2 bg-white/10 px-3 py-1 rounded-full text-[10px] font-bold tracking-wider text-cyan-300 uppercase mb-3 border border-white/10">
                     <ShieldCheck className="w-3.5 h-3.5" />
-                    Official Portal
+                    Authorized Access
                   </div>
                   <h3 className="text-xl sm:text-2xl font-extrabold tracking-tight leading-snug">
-                    Orange Solar Authorized Access
+                    Warranty & Asset Management
                   </h3>
                   <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                    Customer e-warranty dashboard and dealer administration management system.
+                    Customer e-warranty dashboard and authorized dealer administration management system.
                   </p>
 
                   <div className="mt-6 space-y-3 text-xs">
                     <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-cyan-300 shrink-0">
-                        <Check className="w-3.5 h-3.5" />
+                      <div className="icon-circle text-amber-300">
+                        <Zap className="w-4 h-4" />
                       </div>
-                      <span>Instant Digital Warranty Card Generation</span>
+                      <div>
+                        <strong className="block text-white text-xs">Instant Digital Warranty</strong>
+                        <span className="text-slate-300 text-[11px]">Direct factory record verification with QR code</span>
+                      </div>
                     </div>
                     <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-cyan-300 shrink-0">
-                        <Check className="w-3.5 h-3.5" />
+                      <div className="icon-circle text-cyan-300">
+                        <Award className="w-4 h-4" />
                       </div>
-                      <span>ISO 9001:2015 Approved Factory Auditing</span>
-                    </div>
-                    <div className="flex items-center gap-2.5">
-                      <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-cyan-300 shrink-0">
-                        <Check className="w-3.5 h-3.5" />
+                      <div>
+                        <strong className="block text-white text-xs">ISO 9001:2015 & MNRE</strong>
+                        <span className="text-slate-300 text-[11px]">Strict certified quality and compliance auditing</span>
                       </div>
-                      <span>Doorstep Service Tracking & History</span>
                     </div>
                   </div>
                 </div>
@@ -1008,7 +1017,12 @@ export default function LoginPage() {
 
               {/* Right Column: Sign In Form */}
               <div className="md:col-span-7 p-7 sm:p-10 text-slate-900 bg-white flex flex-col justify-center">
-                <div className="mb-6">
+                <div className="mb-6 text-center sm:text-left">
+                  <img
+                    src="/assets/Supreme Favicon.png"
+                    alt="Solar Icon"
+                    className="w-12 h-12 object-contain mb-3 mx-auto sm:mx-0 shadow-sm rounded-full"
+                  />
                   <h3 className="text-xl font-bold text-[#001f3f]">Sign In to Dashboard</h3>
                   <p className="text-xs text-slate-500 mt-1">
                     Enter your authorized email or registered mobile number.

@@ -21,7 +21,8 @@ import {
   MessageSquare,
   Shield,
   ExternalLink,
-  Award
+  Award,
+  Flame
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { isAuthenticated, isAdmin } from '../utils/auth';
@@ -41,8 +42,9 @@ export default function HomePage() {
   const categories = {
     waterHeater: {
       name: 'Orange Diamond Glass Line Solar Water Heater',
-      shortName: 'Glass Line (ETC)',
+      shortName: 'Solar Water Heaters',
       icon: Sun,
+      image: '/assets/images/solar.png',
       warranty: '20-Year Guarantee (Special Glass Coated)',
       highlight: 'Withstands water hardness up to 3000 PPM',
       specs: [
@@ -53,38 +55,56 @@ export default function HomePage() {
       ],
       tag: '20 Year Guarantee'
     },
-    fpc: {
-      name: 'Orange FPC Pressurised Solar Water Heater',
-      shortName: 'FPC Pressurised',
-      icon: Shield,
-      warranty: '10-Year Manufacturer Warranty',
-      highlight: 'Tested up to 10 kg/cm² pressure',
+    chimney: {
+      name: 'Orange Thermal Auto-Clean Kitchen Chimneys',
+      shortName: 'Kitchen Chimneys',
+      icon: Flame,
+      image: '/assets/images/chimney.png',
+      warranty: 'Lifetime Motor & 5-Year Comprehensive',
+      highlight: 'Thermal auto-clean with touch & motion sensor',
       specs: [
-        'FPC collector with 96.5% high absorbency rate',
-        'Withstands working pressure up to 8 kg/cm²',
-        'Ideal for booster pump & multi-shower applications',
-        'Polyester powder-coated G.I. support structure'
+        'High suction power with low-noise copper motor',
+        'Thermal auto-clean with stainless steel oil collector',
+        'Tough curved tempered glass designer hood',
+        'Touch panel with intuitive hand gesture controls'
       ],
-      tag: 'Heavy Duty'
+      tag: 'Auto-Clean'
     },
-    heatpump: {
-      name: 'Orange Domestic & Industrial Heat Pumps',
-      shortName: 'Heat Pumps',
+    purifier: {
+      name: 'Orange Aqua Advanced RO+UV+UF Water Purifier',
+      shortName: 'Water Purifiers',
       icon: Zap,
-      warranty: 'Up to 75% Energy Saving Assurance',
-      highlight: 'German Technology High-Efficiency Heating',
+      image: '/assets/images/purifier.png',
+      warranty: '5-Year Manufacturer Warranty',
+      highlight: '100% Pure Drinking Water with Active Minerals',
       specs: [
-        'Available in 3.8kW, 5.3kW, 8kW & Industrial Capacities',
-        'Operates in all weather conditions & cold seasons',
-        'Environmentally friendly low-GWP refrigerant',
-        'Whisper-quiet compressor operation (<50dB)'
+        'Multi-stage RO+UV+UF+TDS membrane filtration',
+        'Active copper & alkaline mineral fortification',
+        'Food-grade transparent high capacity storage tank',
+        'Smart LED filter life & water purification alerts'
       ],
-      tag: '75% Energy Saving'
+      tag: '100% Pure Water'
+    },
+    geyser: {
+      name: 'Orange Glass-Lined High Pressure Electric Geysers',
+      shortName: 'Electric Geysers',
+      icon: Shield,
+      image: '/assets/images/geyser.png',
+      warranty: '7-Year Tank & 2-Year Element Warranty',
+      highlight: '8-Bar Working Pressure Suitable for High-Rises',
+      specs: [
+        'Vitreous enamel coated inner tank fused at 850°C',
+        'Incoloy 800 quick-heating element',
+        'High-density PUF insulation for energy conservation',
+        'Multi-function safety valve with thermal cut-out'
+      ],
+      tag: '8-Bar Pressure'
     },
     rooftop: {
       name: 'Orange Solar Rooftop On-Grid & PM Surya Ghar',
       shortName: 'Solar Rooftop',
       icon: Award,
+      image: '/assets/images/solar.png',
       warranty: '25+ Years High-Performance German Technology',
       highlight: 'PM Surya Ghar / Muft Bijli Yojana Subsidy Eligible',
       specs: [
@@ -297,8 +317,8 @@ export default function HomePage() {
 
           {/* Active Category Details Panel */}
           {categories[activeCategory] && (
-            <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 sm:p-6 flex flex-col md:flex-row gap-6 items-start justify-between">
-              <div className="space-y-3 max-w-xl">
+            <div className="bg-slate-50 border border-slate-200/90 rounded-xl p-5 sm:p-6 flex flex-col lg:flex-row gap-6 items-center justify-between">
+              <div className="space-y-3 max-w-lg flex-1">
                 <div className="flex items-center gap-2.5">
                   <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase tracking-wider bg-orange-600 text-white">
                     {categories[activeCategory].tag}
@@ -325,18 +345,29 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs w-full md:w-64 shrink-0 flex flex-col justify-between">
+              {/* Authentic Product Image */}
+              {categories[activeCategory].image && (
+                <div className="w-48 h-44 bg-white rounded-2xl p-3 border border-slate-200 shadow-2xs flex items-center justify-center shrink-0">
+                  <img
+                    src={categories[activeCategory].image}
+                    alt={categories[activeCategory].name}
+                    className="max-h-full max-w-full object-contain hover:scale-105 transition-transform"
+                  />
+                </div>
+              )}
+
+              <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-2xs w-full lg:w-60 shrink-0 flex flex-col justify-between">
                 <div>
                   <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">
                     Direct Action
                   </span>
                   <p className="text-xs text-slate-600 mb-3 font-normal">
-                    Have this solar equipment installed? Register its serial number now for official certification.
+                    Have this equipment installed? Register its serial number now for official certification.
                   </p>
                 </div>
                 <Link
-                  to="/register"
-                  className="w-full py-2.5 bg-orange-600 hover:bg-orange-700 text-white text-xs font-semibold text-center rounded-lg shadow-2xs block transition-all"
+                  to="/login"
+                  className="w-full py-2.5 btn-supreme text-center text-xs font-bold rounded-lg shadow-2xs block transition-all active:scale-95"
                 >
                   Register Warranty Now
                 </Link>
