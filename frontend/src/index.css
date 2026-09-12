@@ -181,7 +181,7 @@ h1, h2, h3, h4, h5, h6, button, input, select, textarea, p, span, a, label {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(10, 25, 60, 0.78), rgba(0, 50, 100, 0.82)), url('/assets/images/solar-cat.png') center/cover no-repeat;
+  background: url('/assets/images/orange-solar-cat.png') center bottom/cover no-repeat;
   background-attachment: scroll;
   z-index: 1;
 }
