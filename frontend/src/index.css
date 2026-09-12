@@ -65,51 +65,6 @@ h1, h2, h3, h4, h5, h6, button, input, select, textarea, p, span, a, label {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
 }
 
-/* Hero Section with Orange Solar Heaters in Background (matching reference) */
-.hero-section {
-  position: relative;
-  min-height: 600px;
-  background-color: #021427;
-  overflow: hidden;
-}
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('/assets/images/orange-solar-cat.png');
-  background-size: cover;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  z-index: 1;
-}
-
-.sun-glow {
-  position: absolute;
-  top: 6%;
-  right: 18%;
-  width: 340px;
-  height: 340px;
-  background: radial-gradient(circle, rgba(255, 193, 7, 0.5) 0%, rgba(255, 152, 0, 0.25) 45%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(45px);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 2;
-  animation: pulse-glow 4s ease-in-out infinite alternate;
-}
-
-@keyframes pulse-glow {
-  0% { transform: scale(0.92); opacity: 0.7; }
-  100% { transform: scale(1.12); opacity: 1; }
-}
-
-.glass-card-hero {
-  background: rgba(8, 32, 60, 0.78);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 28px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.25);
-}
 
 /* Custom scrollbars */
 ::-webkit-scrollbar {
@@ -181,49 +136,40 @@ h1, h2, h3, h4, h5, h6, button, input, select, textarea, p, span, a, label {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: url('/assets/images/orange-solar-cat.png') center bottom/cover no-repeat;
-  background-attachment: scroll;
+  background: url('/assets/images/orange-solar-trio.jpg') center center / cover no-repeat;
   z-index: 1;
 }
 
-@media (min-width: 1024px) {
-  .hero-bg {
-    background-attachment: fixed;
-  }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(2, 10, 24, 0.2) 0%, rgba(2, 10, 24, 0.35) 60%, rgba(2, 10, 24, 0.65) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .sun-glow {
   position: absolute;
-  top: -25%;
-  right: -15%;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(255, 215, 0, 0.28) 0%, transparent 65%);
-  animation: sunPulse 25s ease-in-out infinite;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 650px;
+  height: 320px;
+  background: radial-gradient(ellipse at center, rgba(255, 160, 0, 0.22) 0%, transparent 70%);
+  filter: blur(40px);
   z-index: 2;
   pointer-events: none;
 }
 
-@keyframes sunPulse {
-  0%, 100% {
-    opacity: 0.65;
-    transform: scale(0.92);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.08);
-  }
-}
-
 .glass-card-hero {
-  background: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(8, 25, 48, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 26px;
   padding: 48px 40px;
   max-width: 760px;
-  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.2);
   z-index: 10;
   position: relative;
 }
